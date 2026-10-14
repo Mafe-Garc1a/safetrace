@@ -1,0 +1,74 @@
+# Peticiones de prueba (extensión REST Client de VS Code).
+# 1) Ejecutar "Registro" y "Inicio de sesión"; 2) copiar el access_token en @token.
+
+@api = http://localhost:8000
+@token = pegar-aqui-el-access_token
+@n8n = pegar-aqui-CREDENCIAL_SERVICIO_N8N
+
+### Salud
+GET {{api}}/salud
+
+### Registro (RF-01, RF-07)
+POST {{api}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre_completo": "Ana Pérez",
+  "correo": "ana.perez@correo.com",
+  "contrasena": "Contrasena-segura-1",
+  "rol": "PROPIETARIO",
+  "acepta_politica": true
+}
+
+### Inicio de sesión (RF-02): formulario OAuth2, el correo va en username
+POST {{api}}/auth/sesion
+Content-Type: application/x-www-form-urlencoded
+
+username=ana.perez@correo.com&password=Contrasena-segura-1
+
+### Usuario actual
+GET {{api}}/auth/yo
+Authorization: Bearer {{token}}
+
+### Zonas
+GET {{api}}/zonas
+Authorization: Bearer {{token}}
+
+### Registrar inmueble (RF-17 a RF-20)
+POST {{api}}/inmuebles
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "tipo_inmueble": "APARTAMENTO",
+  "direccion": "Calle 14 #23-45 Apto 502",
+  "ciudad": "Pereira",
+  "anio_construccion": 1998,
+  "sistema_constructivo": "MAMPOSTERIA_CONFINADA",
+  "numero_pisos": 5,
+  "longitud": -75.69611,
+  "latitud": 4.81333
+}
+
+### Mis inmuebles (RF-21)
+GET {{api}}/inmuebles
+Authorization: Bearer {{token}}
+
+### n8n entrega un sismo (RF-31 a RF-35)
+POST {{api}}/interno/sismos
+X-Credencial-Servicio: {{n8n}}
+Content-Type: application/json
+
+{
+  "fuente": "SGC",
+  "id_externo": "SGC2026tbcd",
+  "fecha_hora": "2026-10-08T03:10:41Z",
+  "magnitud": 5.4,
+  "profundidad_km": 112.0,
+  "longitud": -75.98,
+  "latitud": 4.63
+}
+
+### Cerrar sesión (RF-03)
+DELETE {{api}}/auth/sesion
+Authorization: Bearer {{token}}

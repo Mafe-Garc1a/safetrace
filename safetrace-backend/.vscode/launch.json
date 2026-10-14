@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "API (uvicorn)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["main:app", "--reload"],
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "Trabajador",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "trabajador.main",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

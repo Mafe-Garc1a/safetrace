@@ -1,0 +1,23 @@
+# Entorno virtual (en la carpeta venv/ o, por error, en la raíz del proyecto)
+venv/
+.venv/
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
+
+# Variables de entorno: nunca subir .env
+.env
+
+# Python y herramientas
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Pesos del modelo de IA (se copian desde Colab)
+modelos_ia/*
+!modelos_ia/README.md
+!modelos_ia/.gitkeep
