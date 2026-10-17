@@ -1,4 +1,4 @@
-# Entorno virtual (en la carpeta venv/ o, por error, en la raíz del proyecto)
+# Entornos virtuales (en venv/ o, por error, en la raíz)
 venv/
 .venv/
 Lib/
@@ -16,8 +16,3 @@ __pycache__/
 .ruff_cache/
 .coverage
 htmlcov/
-
-# Pesos del modelo de IA (se copian desde Colab)
-modelos_ia/*
-!modelos_ia/README.md
-!modelos_ia/.gitkeep
